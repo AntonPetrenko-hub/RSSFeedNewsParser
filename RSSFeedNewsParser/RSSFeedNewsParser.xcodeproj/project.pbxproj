@@ -15,6 +15,7 @@
 		0E511A06242258DA007A5E69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E511A04242258DA007A5E69 /* LaunchScreen.storyboard */; };
 		0E511A11242258DA007A5E69 /* RSSFeedNewsParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511A10242258DA007A5E69 /* RSSFeedNewsParserTests.swift */; };
 		0E511A1C242258DA007A5E69 /* RSSFeedNewsParserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511A1B242258DA007A5E69 /* RSSFeedNewsParserUITests.swift */; };
+		0E511A2A242268D3007A5E69 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E511A29242268D3007A5E69 /* NewsFeed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		0E511A17242258DA007A5E69 /* RSSFeedNewsParserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSFeedNewsParserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E511A1B242258DA007A5E69 /* RSSFeedNewsParserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedNewsParserUITests.swift; sourceTree = "<group>"; };
 		0E511A1D242258DA007A5E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E511A29242268D3007A5E69 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				0E5119FB242258D4007A5E69 /* SceneDelegate.swift */,
 				0E5119FD242258D4007A5E69 /* ViewController.swift */,
 				0E5119FF242258D5007A5E69 /* Main.storyboard */,
+				0E511A29242268D3007A5E69 /* NewsFeed.swift */,
 				0E511A02242258DA007A5E69 /* Assets.xcassets */,
 				0E511A04242258DA007A5E69 /* LaunchScreen.storyboard */,
 				0E511A07242258DA007A5E69 /* Info.plist */,
@@ -261,6 +264,7 @@
 			files = (
 				0E5119FE242258D4007A5E69 /* ViewController.swift in Sources */,
 				0E5119FA242258D4007A5E69 /* AppDelegate.swift in Sources */,
+				0E511A2A242268D3007A5E69 /* NewsFeed.swift in Sources */,
 				0E5119FC242258D4007A5E69 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
