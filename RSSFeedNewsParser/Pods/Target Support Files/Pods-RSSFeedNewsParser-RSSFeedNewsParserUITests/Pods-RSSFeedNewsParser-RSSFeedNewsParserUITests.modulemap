@@ -1,0 +1,6 @@
+framework module Pods_RSSFeedNewsParser_RSSFeedNewsParserUITests {
+  umbrella header "Pods-RSSFeedNewsParser-RSSFeedNewsParserUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

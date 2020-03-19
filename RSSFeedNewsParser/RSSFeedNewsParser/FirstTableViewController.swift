@@ -13,6 +13,7 @@ struct Post {
     var description: String
     var link: String
     var content: String
+    var imageAddress: String
 }
 
 class FirstTableViewController: UITableViewController, XMLParserDelegate {
@@ -20,7 +21,7 @@ class FirstTableViewController: UITableViewController, XMLParserDelegate {
     var posts: [Post] = []
     
     var parser = XMLParser()
-    var tmpPost: Post? = nil
+    var tmpPost: Post?
     var tmpElement: String?
     
     var firstPageURL: URL?
@@ -40,10 +41,6 @@ class FirstTableViewController: UITableViewController, XMLParserDelegate {
         
         firstPageURL = UserDefaults.standard.url(forKey: "FirstPageURL")
         firstPageName = UserDefaults.standard.string(forKey: "FirstPageName")
-        
-        print("URL: \(firstPageURL) Name: \(firstPageName)")
-        
-        
         
         DispatchQueue.global(qos: .background).async {
             if let pageUrl = self.firstPageURL {
@@ -66,7 +63,7 @@ class FirstTableViewController: UITableViewController, XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         tmpElement = elementName
         if elementName == "item" {
-            tmpPost = Post(title: "", description: "", link: "", content: "")
+            tmpPost = Post(title: "", description: "", link: "", content: "", imageAddress: "")
         }
     }
     
@@ -87,6 +84,9 @@ class FirstTableViewController: UITableViewController, XMLParserDelegate {
                 tmpPost?.link = post.link+str
             } else if tmpElement == "description" {
                 tmpPost?.description = post.description+str
+            } else if tmpElement == "content:encoded" {
+                tmpPost?.content = post.content+str
+                print(tmpPost?.content)
             }
         }
     }
