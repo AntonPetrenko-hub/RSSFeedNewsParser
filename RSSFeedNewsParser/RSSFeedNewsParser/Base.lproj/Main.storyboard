@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--View Controller-->
         <scene sceneID="eSN-M5-zCr">
             <objects>
                 <viewController id="UNQ-u5-KLt" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Zes-Sq-igI"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Kcm-6g-XFM"/>
+                    <tabBarItem key="tabBarItem" title="" image="book" catalog="system" id="Kcm-6g-XFM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4C-Xc-UOc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,23 +170,36 @@
             </objects>
             <point key="canvasLocation" x="2950.7246376811595" y="170.75892857142856"/>
         </scene>
-        <!--Item-->
-        <scene sceneID="AHq-b5-9Oo">
+        <!--First Table View Controller-->
+        <scene sceneID="klm-lc-Poc">
             <objects>
-                <viewController id="F7g-2Z-G7d" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Spq-im-fLy">
+                <tableViewController id="1Pe-ak-jBP" customClass="FirstTableViewController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PsG-lR-Ocw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="g6D-qw-EVa"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="111-xL-A8s"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fM4-Gg-UpK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="u1r-HL-yeI">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u1r-HL-yeI" id="eme-Gh-CFl">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1Pe-ak-jBP" id="hHv-Bx-5PX"/>
+                            <outlet property="delegate" destination="1Pe-ak-jBP" id="gDa-om-4y7"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="" image="book" catalog="system" id="Rc2-G8-AGT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SBb-5j-ROM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1725" y="-1116"/>
+            <point key="canvasLocation" x="1550" y="-954"/>
         </scene>
-        <!--Item 1-->
+        <!--View Controller-->
         <scene sceneID="mxk-I7-Qdk">
             <objects>
                 <viewController id="aqI-nX-loQ" sceneMemberID="viewController">
@@ -196,7 +209,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="0Aj-VL-CBC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="KZi-LN-IW1"/>
+                    <tabBarItem key="tabBarItem" title="" image="book" catalog="system" id="KZi-LN-IW1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdx-Ro-ZDo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -212,9 +225,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="1Pe-ak-jBP" kind="relationship" relationship="viewControllers" id="3To-4E-8hz"/>
                         <segue destination="aqI-nX-loQ" kind="relationship" relationship="viewControllers" id="k0e-ev-CYy"/>
                         <segue destination="UNQ-u5-KLt" kind="relationship" relationship="viewControllers" id="g9Y-gT-4Eh"/>
-                        <segue destination="F7g-2Z-G7d" kind="relationship" relationship="viewControllers" id="YV3-oF-CpF"/>
                         <segue destination="vmP-35-2MB" kind="relationship" relationship="viewControllers" id="KC1-I1-BhR"/>
                     </connections>
                 </tabBarController>
@@ -224,6 +237,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book" catalog="system" width="64" height="50"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
 </document>
