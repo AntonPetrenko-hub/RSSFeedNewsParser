@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSoup
 
 struct Post {
     var title: String
@@ -86,7 +87,21 @@ class FirstTableViewController: UITableViewController, XMLParserDelegate {
                 tmpPost?.description = post.description+str
             } else if tmpElement == "content:encoded" {
                 tmpPost?.content = post.content+str
-                print(tmpPost?.content)
+                
+                do {
+
+                    let doc: Document = try SwiftSoup.parse(tmpPost!.content)
+                    let img: Element = try doc.select("img").first()!
+                    
+                    let imgSrc: String = try img.attr("src");
+                    tmpPost?.imageAddress = imgSrc
+                    
+                } catch Exception.Error(let type, let message) {
+                    print(message)
+                } catch {
+                    print("error")
+                }
+                
             }
         }
     }
@@ -94,14 +109,13 @@ class FirstTableViewController: UITableViewController, XMLParserDelegate {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return posts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! FirstTableViewCell
 //        cell.nameLabel.text = posts[indexPath.row].title
-        cell.commonInit(posts[indexPath.row].title, posts[indexPath.row].description)
+        cell.commonInit(posts[indexPath.row].title, posts[indexPath.row].description, posts[indexPath.row].imageAddress)
         return cell
     }
     

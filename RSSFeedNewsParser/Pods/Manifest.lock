@@ -1,16 +1,16 @@
 PODS:
-  - Fuzi (1.0.1)
+  - SwiftSoup (2.3.0)
 
 DEPENDENCIES:
-  - Fuzi (~> 1.0.0)
+  - SwiftSoup
 
 SPEC REPOS:
   trunk:
-    - Fuzi
+    - SwiftSoup
 
 SPEC CHECKSUMS:
-  Fuzi: 851403654bac55675aaeed815d0c8a1d3e3d3e8b
+  SwiftSoup: d78683f7ea0ae5733225a9e1d3bee5b256449df4
 
-PODFILE CHECKSUM: 48a5713a058889f732c03ed1338ad17cfc159c84
+PODFILE CHECKSUM: 94c1be1a5ec38aeb2b5af5ad85afa8c792057a71
 
 COCOAPODS: 1.9.1

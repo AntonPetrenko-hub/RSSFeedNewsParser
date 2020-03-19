@@ -4,8 +4,8 @@
 target 'RSSFeedNewsParser' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-pod 'Fuzi', '~> 1.0.0'
-  # Pods for RSSFeedNewsParser
+
+pod 'SwiftSoup'
 
   target 'RSSFeedNewsParserTests' do
     inherit! :search_paths

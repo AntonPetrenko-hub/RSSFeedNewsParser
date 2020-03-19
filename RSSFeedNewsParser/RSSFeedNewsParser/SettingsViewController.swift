@@ -31,6 +31,10 @@ class SettingsViewController: UIViewController {
 
     }
     
+    @objc func fireTimer() {
+        print("Timer fired")
+    }
+    
     @IBAction func saveButtonPress(_ sender: UIButton) {
         
         // Validation
@@ -54,6 +58,13 @@ class SettingsViewController: UIViewController {
             self.tabBarController?.tabBar.items?[1].title = UserDefaults.standard.string(forKey: "SecondPageName")
             self.tabBarController?.tabBar.items?[2].title = UserDefaults.standard.string(forKey: "ThirdPageName")
         }
+        
+        if timerLabel.text != "" {
+            let stringTime = timerLabel.text ?? ""
+            let time = Double(stringTime) ?? 0
+            let timer = Timer.scheduledTimer(timeInterval: time, target: self, selector: , userInfo: <#T##Any?#>, repeats: <#T##Bool#>)
+        }
+        
     }
 
 }

@@ -36,10 +36,14 @@ class FirstTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(_ title: String, _ desc: String){
+    func commonInit(_ title: String, _ desc: String, _ img: String){
         nameLabel.text = title
         descriptionLabel.text = desc
-        newsImage.image = UIImage(named: "bbcnews")
+        
+        let url = URL(string: img)
+        let data = try? Data(contentsOf: url!)
+        newsImage.image = UIImage(data: data!)
+        
     }
     
 }
