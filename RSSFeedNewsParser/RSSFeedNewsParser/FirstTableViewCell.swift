@@ -39,6 +39,7 @@ class FirstTableViewCell: UITableViewCell {
     func commonInit(_ title: String, _ desc: String){
         nameLabel.text = title
         descriptionLabel.text = desc
+        newsImage.image = UIImage(named: "bbcnews")
     }
     
 }

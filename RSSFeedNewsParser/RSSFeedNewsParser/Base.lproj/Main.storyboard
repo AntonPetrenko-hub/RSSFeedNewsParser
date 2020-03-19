@@ -26,7 +26,7 @@
         <!--Settings-->
         <scene sceneID="aJr-bF-dFs">
             <objects>
-                <viewController id="vmP-35-2MB" sceneMemberID="viewController">
+                <viewController id="vmP-35-2MB" customClass="SettingsViewController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4v0-rJ-wid">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,6 +151,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwJ-bT-4Mv">
                                 <rect key="frame" x="190" y="490" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonPress:" destination="vmP-35-2MB" eventType="touchUpInside" id="MIc-Cu-WVI"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -165,6 +168,15 @@
                         <viewLayoutGuide key="safeArea" id="Tp9-iS-LPc"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="plus" catalog="system" id="htH-OB-0MH"/>
+                    <connections>
+                        <outlet property="firstPageTitleLabel" destination="OGH-ho-Kfo" id="wNT-ZN-L5l"/>
+                        <outlet property="firstUrlLabel" destination="TqW-ou-M8O" id="SZk-o9-nFc"/>
+                        <outlet property="secondPageTitleLabel" destination="Phh-VQ-LJ5" id="An1-u0-oHI"/>
+                        <outlet property="secondUrlLabel" destination="6Qg-LN-Gto" id="NVm-Ox-IuT"/>
+                        <outlet property="thirdPageTitleLabel" destination="xxw-sM-fqK" id="0Vq-Qg-kJU"/>
+                        <outlet property="thirdUrlLabel" destination="5aB-d1-tjm" id="YAr-bM-ig1"/>
+                        <outlet property="timerLabel" destination="kIx-vs-0vb" id="701-fe-72g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kV2-tg-chs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -215,10 +227,10 @@
             </objects>
             <point key="canvasLocation" x="2717" y="-656"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="B2d-nt-xDE">
             <objects>
-                <tabBarController id="7cZ-Mg-jEf" sceneMemberID="viewController">
+                <tabBarController id="7cZ-Mg-jEf" customClass="MainTabBarController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tFu-dG-cgc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
