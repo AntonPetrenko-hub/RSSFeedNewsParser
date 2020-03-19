@@ -29,33 +29,31 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func saveButtonPress(_ sender: UIButton) {
         
+        // Validation
         if firstUrlLabel.text == "" || firstPageTitleLabel.text == "" || secondUrlLabel.text == "" || secondPageTitleLabel.text == "" || thirdUrlLabel.text == "" || thirdPageTitleLabel.text == "" {
+            
             let alert = UIAlertController(title: "Wrong content", message: "Please, fill all fields!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
             self.present(alert, animated: true)
+            
         } else {
+            //Saving names and URLs to user defaults
             UserDefaults.standard.set(URL(string: firstUrlLabel.text ?? ""), forKey: "FirstPageURL")
             UserDefaults.standard.set( firstPageTitleLabel.text ?? "", forKey: "FirstPageName")
-            let one = UserDefaults.standard.url(forKey: "FirstPageURL")
-            let two = UserDefaults.standard.string(forKey: "FirstPageName")
-            print("URL: \(one) Name: \(two)")
+            UserDefaults.standard.set(URL(string: secondUrlLabel.text ?? ""), forKey: "SecondPageURL")
+            UserDefaults.standard.set( secondPageTitleLabel.text ?? "", forKey: "SecondPageName")
+            UserDefaults.standard.set(URL(string: thirdPageTitleLabel.text ?? ""), forKey: "ThirdPageURL")
+            UserDefaults.standard.set( thirdPageTitleLabel.text ?? "", forKey: "ThirdPageName")
+            
+            // Changing tab bar items names
+            self.tabBarController?.tabBar.items?[0].title = UserDefaults.standard.string(forKey: "FirstPageName")
+            self.tabBarController?.tabBar.items?[1].title = UserDefaults.standard.string(forKey: "SecondPageName")
+            self.tabBarController?.tabBar.items?[2].title = UserDefaults.standard.string(forKey: "ThirdPageName")
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
