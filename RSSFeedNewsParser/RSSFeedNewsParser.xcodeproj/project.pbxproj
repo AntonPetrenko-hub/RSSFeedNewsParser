@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E085D042424ED8700E09730 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E085D032424ED8700E09730 /* PostModel.swift */; };
 		0E45A24524235E8900373EAA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45A24424235E8900373EAA /* SettingsViewController.swift */; };
 		0E45A2472423855500373EAA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45A2462423855500373EAA /* MainTabBarController.swift */; };
 		0E5119FA242258D4007A5E69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5119F9242258D4007A5E69 /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E085D032424ED8700E09730 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		0E45A24424235E8900373EAA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0E45A2462423855500373EAA /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0E5119F6242258D4007A5E69 /* RSSFeedNewsParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSFeedNewsParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 				0E511A2F242281DD007A5E69 /* FirstTableViewCell.swift */,
 				0E511A30242281DD007A5E69 /* FirstTableViewCell.xib */,
 				0E511A2D242270CC007A5E69 /* FirstTableViewController.swift */,
+				0E085D032424ED8700E09730 /* PostModel.swift */,
 				0E511A29242268D3007A5E69 /* NewsFeed.swift */,
 				0E511A02242258DA007A5E69 /* Assets.xcassets */,
 				0E511A04242258DA007A5E69 /* LaunchScreen.storyboard */,
@@ -183,7 +186,6 @@
 				153C91B756B87E00C907EA10 /* Pods-RSSFeedNewsParserTests.debug.xcconfig */,
 				E0DE94A006BBA5C83A0E3505 /* Pods-RSSFeedNewsParserTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -428,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E511A31242281DD007A5E69 /* FirstTableViewCell.swift in Sources */,
+				0E085D042424ED8700E09730 /* PostModel.swift in Sources */,
 				0E5119FE242258D4007A5E69 /* ViewController.swift in Sources */,
 				0E45A2472423855500373EAA /* MainTabBarController.swift in Sources */,
 				0E45A24524235E8900373EAA /* SettingsViewController.swift in Sources */,

@@ -10,6 +10,11 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    var updatingTime: Double?
+    
+    var firstTableViewController: FirstTableViewController?
+    
+//    let vc = FirstTableViewController()
     
     @IBOutlet weak var firstUrlLabel: UITextField!
     
@@ -28,12 +33,11 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
     }
     
-    @objc func fireTimer() {
-        print("Timer fired")
-    }
+   
     
     @IBAction func saveButtonPress(_ sender: UIButton) {
         
@@ -45,7 +49,7 @@ class SettingsViewController: UIViewController {
             self.present(alert, animated: true)
             
         } else {
-            //Saving names and URLs to user defaults
+            // Saving names and URLs to user defaults
             UserDefaults.standard.set(URL(string: firstUrlLabel.text ?? ""), forKey: "FirstPageURL")
             UserDefaults.standard.set( firstPageTitleLabel.text ?? "", forKey: "FirstPageName")
             UserDefaults.standard.set(URL(string: secondUrlLabel.text ?? ""), forKey: "SecondPageURL")
@@ -57,14 +61,20 @@ class SettingsViewController: UIViewController {
             self.tabBarController?.tabBar.items?[0].title = UserDefaults.standard.string(forKey: "FirstPageName")
             self.tabBarController?.tabBar.items?[1].title = UserDefaults.standard.string(forKey: "SecondPageName")
             self.tabBarController?.tabBar.items?[2].title = UserDefaults.standard.string(forKey: "ThirdPageName")
+            
+            
         }
         
         if timerLabel.text != "" {
-            let stringTime = timerLabel.text ?? ""
-            let time = Double(stringTime) ?? 0
-            let timer = Timer.scheduledTimer(timeInterval: time, target: self, selector: , userInfo: <#T##Any?#>, repeats: <#T##Bool#>)
+            if let stringTime = Double(timerLabel.text!){
+                print(stringTime)
+                NotificationCenter.default.post(name: .newTime, object: nil, userInfo: ["time":stringTime])
+            }
+//            let doubleTime = stringTime as? Double
+//            print(doubleTime)
+            
+
         }
-        
     }
 
 }

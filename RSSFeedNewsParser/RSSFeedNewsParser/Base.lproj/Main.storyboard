@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4C-Xc-UOc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3719" y="-301"/>
+            <point key="canvasLocation" x="4442" y="-269"/>
         </scene>
         <!--Settings-->
         <scene sceneID="aJr-bF-dFs">
@@ -133,14 +133,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-N9-dwQ">
                                         <rect key="frame" x="0.0" y="372" width="374" height="34"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZ2-Ei-HZE">
-                                                <rect key="frame" x="0.0" y="0.0" width="44.5" height="34"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time in sec:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZ2-Ei-HZE">
+                                                <rect key="frame" x="0.0" y="0.0" width="87.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kIx-vs-0vb">
-                                                <rect key="frame" x="76.5" y="0.0" width="297.5" height="34"/>
+                                                <rect key="frame" x="119.5" y="0.0" width="254.5" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -205,11 +205,17 @@
                             <outlet property="delegate" destination="1Pe-ak-jBP" id="gDa-om-4y7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" image="book" catalog="system" id="Rc2-G8-AGT"/>
+                    <navigationItem key="navigationItem" id="cE4-Mi-8gp">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="bz9-24-CSy">
+                            <connections>
+                                <action selector="updateButtonClick:" destination="1Pe-ak-jBP" id="a1v-BH-sfo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBb-5j-ROM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1550" y="-954"/>
+            <point key="canvasLocation" x="2459.4202898550725" y="-954.24107142857133"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mxk-I7-Qdk">
@@ -225,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdx-Ro-ZDo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2717" y="-656"/>
+            <point key="canvasLocation" x="3445" y="-577"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="B2d-nt-xDE">
@@ -237,7 +243,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="1Pe-ak-jBP" kind="relationship" relationship="viewControllers" id="3To-4E-8hz"/>
+                        <segue destination="y3N-RF-nSa" kind="relationship" relationship="viewControllers" id="3To-4E-8hz"/>
                         <segue destination="aqI-nX-loQ" kind="relationship" relationship="viewControllers" id="k0e-ev-CYy"/>
                         <segue destination="UNQ-u5-KLt" kind="relationship" relationship="viewControllers" id="g9Y-gT-4Eh"/>
                         <segue destination="vmP-35-2MB" kind="relationship" relationship="viewControllers" id="KC1-I1-BhR"/>
@@ -247,8 +253,28 @@
             </objects>
             <point key="canvasLocation" x="428" y="-48"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pWT-bW-eYz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y3N-RF-nSa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="book" catalog="system" id="Rc2-G8-AGT"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z3V-lg-ErF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1Pe-ak-jBP" kind="relationship" relationship="rootViewController" id="3vh-gD-DxF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SWT-IY-ivW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1549.2753623188407" y="-954.24107142857133"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
         <image name="book" catalog="system" width="64" height="50"/>
         <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
