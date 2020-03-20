@@ -67,11 +67,8 @@ class SettingsViewController: UIViewController {
         
         if timerLabel.text != "" {
             if let stringTime = Double(timerLabel.text!){
-                print(stringTime)
                 NotificationCenter.default.post(name: .newTime, object: nil, userInfo: ["time":stringTime])
             }
-//            let doubleTime = stringTime as? Double
-//            print(doubleTime)
             
 
         }

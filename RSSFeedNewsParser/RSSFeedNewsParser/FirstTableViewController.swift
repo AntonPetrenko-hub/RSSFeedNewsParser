@@ -38,10 +38,8 @@ class FirstTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         // Calling timer
         if let interval = updatingTimeInterval {
-            print(interval)
             if interval >= 0 {
                 timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePageContent), userInfo: nil, repeats: true)
-                print("Timer started!")
             }
         }
     }
@@ -57,7 +55,6 @@ class FirstTableViewController: UITableViewController {
     
     @objc func updatePageContent() {
         
-        print("I am executing! Table view is going to be updated!")
         // Change tab bar name
         self.tabBarController?.tabBar.items?[0].title = UserDefaults.standard.string(forKey: "FirstPageName")
         
@@ -87,7 +84,7 @@ class FirstTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(posts[indexPath.row].link)
+
     }
     
     // MARK: - Notification Center Configuration
@@ -97,7 +94,6 @@ class FirstTableViewController: UITableViewController {
             let newOptionalTimeInterval = newTimeIntervalFromDictionary["time"]
             if let timeDouble = newOptionalTimeInterval {
                 updatingTimeInterval = timeDouble as! Double
-                print(updatingTimeInterval)
             }
         }
     }
