@@ -8,10 +8,21 @@
 
 import Foundation
 
-struct Post {
+struct Post: Codable {
+    
+    init(title: String, description: String, link: String, content:String, imageAddress: String, opened: Bool) {
+        self.title = title
+        self.description = description
+        self.link = link
+        self.content = content
+        self.imageAddress = imageAddress
+        self.opened = opened
+    }
+    
     var title: String
     var description: String
     var link: String
     var content: String
     var imageAddress: String
+    var opened: Bool = false
 }

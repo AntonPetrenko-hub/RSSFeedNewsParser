@@ -11,6 +11,8 @@ import SwiftSoup
 
 class FirstTableViewController: UITableViewController {
     
+    var tabWasVisitedFirst = false
+    
     var posts: [Post] = []
     
     var timer = Timer()
@@ -24,22 +26,46 @@ class FirstTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Notification Center Adding
-        NotificationCenter.default.addObserver(self, selector: #selector(setTime(notification:)), name: .newTime, object: nil)
+
         
+        // MARK: Notification Center Adding
+        NotificationCenter.default.addObserver(self, selector: #selector(setTime(notification:)), name: .newTime, object: nil)
+              
         //Config TableView Cell
         let nibName = UINib(nibName: "FirstTableViewCell", bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: "Cell")
         
-        
    }
+    
+    func getPostsFromUserDefaults() {
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            if let savedPosts = UserDefaults.standard.object(forKey: "posts") as? Data {
+                if let loadedPosts = try? JSONDecoder().decode([Post].self, from: savedPosts) {
+                    self.posts = loadedPosts
+                }
+            }
+                       }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if tabWasVisitedFirst == false {
+                  self.tabWasVisitedFirst = true
+              } else if tabWasVisitedFirst == true {
+                      if posts.count <= 0 {
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                      }
+              }
+        
         // Calling timer
         if let interval = updatingTimeInterval {
             if interval >= 0 {
-                timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePageContent), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePageContenAndTableUI), userInfo: nil, repeats: true)
             }
         }
     }
@@ -49,9 +75,9 @@ class FirstTableViewController: UITableViewController {
         timer.invalidate()
     }
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        <#code#>
-//    }
+    @objc func updatePageContenAndTableUI() {
+        updatePageContent()
+    }
     
     @objc func updatePageContent() {
         
@@ -61,14 +87,21 @@ class FirstTableViewController: UITableViewController {
         // Parse new data and update tableView
         DispatchQueue.global(qos: .background).async {
                  if let pageUrl = UserDefaults.standard.url(forKey: "FirstPageURL") {
+                     self.posts = []
                      self.parser = XMLParser(contentsOf: pageUrl)!
                      self.parser.delegate = self
                      self.parser.parse()
                  }
-                 DispatchQueue.main.async {
-                     self.tableView.reloadData()
-                 }
-             }
+                                      //self.tableView.reloadData()
+                                     // Saving posts to user defaults
+            
+            if let encoded = try? JSONEncoder().encode(self.posts) {
+                UserDefaults.standard.set(encoded, forKey: "posts")
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Table view data source
@@ -78,13 +111,31 @@ class FirstTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if posts[indexPath.row].opened == true {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! FirstTableViewCell
+            cell.commonInit(posts[indexPath.row].title, posts[indexPath.row].description, posts[indexPath.row].imageAddress)
+            cell.nameLabel.numberOfLines = 0
+            cell.descriptionLabel.numberOfLines = 0
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! FirstTableViewCell
         cell.commonInit(posts[indexPath.row].title, posts[indexPath.row].description, posts[indexPath.row].imageAddress)
+        cell.nameLabel.numberOfLines = 1
+        cell.descriptionLabel.numberOfLines = 1
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if posts[indexPath.row].opened == false {
+            posts[indexPath.row].opened = true
+        } else if posts[indexPath.row].opened == true {
+            posts[indexPath.row].opened = false
+        }
+        DispatchQueue.main.async {
+                    tableView.reloadData()
+        }
+                
     }
     
     // MARK: - Notification Center Configuration
@@ -98,19 +149,9 @@ class FirstTableViewController: UITableViewController {
         }
     }
     
-//    func startUpdateWithTimer () {
-//
-//        if let interval = updatingTimeInterval, updatingTimeInterval != 0 && updatingTimeInterval != nil && interval > 0.0 {
-//
-//            let updateTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
-//                self.updatePageContent()
-//            }
-//        }
-//    }
-    
     @IBAction func updateButtonClick(_ sender: UIBarButtonItem) {
         
-        updatePageContent()
+        updatePageContenAndTableUI()
     }
     
 }
@@ -130,7 +171,7 @@ extension FirstTableViewController: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         tmpElement = elementName
         if elementName == "item" {
-            tmpPost = Post(title: "", description: "", link: "", content: "", imageAddress: "")
+            tmpPost = Post(title: "", description: "", link: "", content: "", imageAddress: "", opened: false)
         }
     }
     
