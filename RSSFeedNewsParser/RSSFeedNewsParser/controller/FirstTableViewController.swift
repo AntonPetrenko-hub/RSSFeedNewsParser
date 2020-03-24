@@ -58,10 +58,6 @@ class FirstTableViewController: UITableViewController {
     }
     
     @objc func updatePageContenAndTableUI() {
-        updatePageContent()
-    }
-    
-    @objc func updatePageContent() {
         
         // Change tab bar name
         self.tabBarController?.tabBar.items?[0].title = UserDefaults.standard.string(forKey: "FirstPageName")
@@ -74,8 +70,6 @@ class FirstTableViewController: UITableViewController {
                      self.parser.delegate = self
                      self.parser.parse()
                  }
-                                      //self.tableView.reloadData()
-                                     // Saving posts to user defaults
             
             if let encoded = try? JSONEncoder().encode(self.posts) {
                 UserDefaults.standard.set(encoded, forKey: "posts")
@@ -142,13 +136,13 @@ class FirstTableViewController: UITableViewController {
         return CGFloat(86.0)
     }
     
-    // MARK: - Notification Center Configuration
+    // MARK: - Set timer
     
     @objc func setTime(notification: Notification) {
         if let newTimeIntervalFromDictionary = notification.userInfo {
             let newOptionalTimeInterval = newTimeIntervalFromDictionary["time"]
             if let timeDouble = newOptionalTimeInterval {
-                updatingTimeInterval = timeDouble as! Double
+                updatingTimeInterval = timeDouble as? Double
             }
         }
     }
@@ -166,10 +160,11 @@ extension Notification.Name {
 
 extension FirstTableViewController: XMLParserDelegate {
     
-    // MARK: - Parse delegate
+    // MARK: - XMLParse delegate
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("Parse error: \(parseError)")
+        self.tableView.reloadData()
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
@@ -216,7 +211,7 @@ extension FirstTableViewController: XMLParserDelegate {
         }
     }
 }
-
+// MARK: - heightOfString
 extension String {
     func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)

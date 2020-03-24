@@ -27,23 +27,12 @@ class FirstTableViewCell: UITableViewCell {
         
         nameLabel.text = newsTitle
         descriptionLabel.text = newsDescription
-        
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
     func commonInit(_ title: String, _ desc: String, _ img: String){
         nameLabel.text = title
         descriptionLabel.text = desc
-        
-        let url = URL(string: img)
-//        let data = try? Data(contentsOf: url!)
-        newsImage.sd_setImage(with: url, placeholderImage: UIImage(named: "loading"), completed: nil)
-//        newsImage.image = UIImage(data: data!)
+        newsImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(named: "loading"), completed: nil)
         
     }
     
