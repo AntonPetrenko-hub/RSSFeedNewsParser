@@ -8,16 +8,8 @@
 
 import Foundation
 
-class NewsFeed {
-    var url: String
-    var title: String
-    
-    init(url: String, title: String) {
-        self.url = url
-        self.title = title
-    }
-}
+public class NewsFeed {
 
-protocol RSSNewsFeed {
-    
+    var timer = Timer()
+    var parser = XMLParser()
 }

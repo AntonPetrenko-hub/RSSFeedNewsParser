@@ -12,21 +12,16 @@ import SwiftSoup
 class FirstTableViewController: UITableViewController {
     
     var tabWasVisitedFirst = false
-    
     var posts: [Post] = []
-    
-    var timer = Timer()
-    
     var updatingTimeInterval: Double?
-    
-    var parser = XMLParser()
     var tmpPost: Post?
     var tmpElement: String?
     
+    var timer = Timer()
+    var parser = XMLParser()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         
         // MARK: Notification Center Adding
         NotificationCenter.default.addObserver(self, selector: #selector(setTime(notification:)), name: .newTime, object: nil)
@@ -34,20 +29,7 @@ class FirstTableViewController: UITableViewController {
         //Config TableView Cell
         let nibName = UINib(nibName: "FirstTableViewCell", bundle: .main)
         tableView.register(nibName, forCellReuseIdentifier: "Cell")
-        
    }
-    
-    func getPostsFromUserDefaults() {
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            
-            if let savedPosts = UserDefaults.standard.object(forKey: "posts") as? Data {
-                if let loadedPosts = try? JSONDecoder().decode([Post].self, from: savedPosts) {
-                    self.posts = loadedPosts
-                }
-            }
-                       }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -62,7 +44,7 @@ class FirstTableViewController: UITableViewController {
                       }
               }
         
-        // Calling timer
+        // MARK: Calling timer
         if let interval = updatingTimeInterval {
             if interval >= 0 {
                 timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePageContenAndTableUI), userInfo: nil, repeats: true)
@@ -104,6 +86,18 @@ class FirstTableViewController: UITableViewController {
         }
     }
     
+    func getPostsFromUserDefaults() {
+          
+          DispatchQueue.global(qos: .userInitiated).async {
+              
+              if let savedPosts = UserDefaults.standard.object(forKey: "posts") as? Data {
+                  if let loadedPosts = try? JSONDecoder().decode([Post].self, from: savedPosts) {
+                      self.posts = loadedPosts
+                  }
+              }
+          }
+      }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,6 +111,7 @@ class FirstTableViewController: UITableViewController {
             cell.commonInit(posts[indexPath.row].title, posts[indexPath.row].description, posts[indexPath.row].imageAddress)
             cell.nameLabel.numberOfLines = 0
             cell.descriptionLabel.numberOfLines = 0
+            
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! FirstTableViewCell
@@ -132,10 +127,19 @@ class FirstTableViewController: UITableViewController {
         } else if posts[indexPath.row].opened == true {
             posts[indexPath.row].opened = false
         }
+        
         DispatchQueue.main.async {
                     tableView.reloadData()
         }
-                
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if posts[indexPath.row].opened == true {
+            if posts[indexPath.row].title.heightWithConstrainedWidth(width: 221.0, font: UIFont.systemFont(ofSize: 17.0)) + posts[indexPath.row].description.heightWithConstrainedWidth(width: 221.0, font: UIFont.systemFont(ofSize: 13.0) ) + 42.0 > 120.0 {
+                return CGFloat(120.0)
+            }
+        }
+        return CGFloat(86.0)
     }
     
     // MARK: - Notification Center Configuration
@@ -208,9 +212,15 @@ extension FirstTableViewController: XMLParserDelegate {
                 } catch {
                     print("error")
                 }
-                
             }
         }
     }
-    
+}
+
+extension String {
+    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
+        return boundingBox.height
+    }
 }
