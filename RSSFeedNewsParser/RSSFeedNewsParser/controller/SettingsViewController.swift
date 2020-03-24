@@ -54,7 +54,7 @@ class SettingsViewController: UIViewController {
             UserDefaults.standard.set( firstPageTitleLabel.text ?? "", forKey: "FirstPageName")
             UserDefaults.standard.set(URL(string: secondUrlLabel.text ?? ""), forKey: "SecondPageURL")
             UserDefaults.standard.set( secondPageTitleLabel.text ?? "", forKey: "SecondPageName")
-            UserDefaults.standard.set(URL(string: thirdPageTitleLabel.text ?? ""), forKey: "ThirdPageURL")
+            UserDefaults.standard.set(URL(string: thirdUrlLabel.text ?? ""), forKey: "ThirdPageURL")
             UserDefaults.standard.set( thirdPageTitleLabel.text ?? "", forKey: "ThirdPageName")
             
             // Changing tab bar items names
@@ -75,6 +75,10 @@ class SettingsViewController: UIViewController {
                 let secondNVVC = self.tabBarController?.viewControllers![1] as! UINavigationController
                 let secondVC = secondNVVC.viewControllers[0] as! SecondTableViewController
                 secondVC.updatingTimeInterval = stringTime
+                
+                let thirdNVVC = self.tabBarController?.viewControllers![2] as! UINavigationController
+                let thirdVC = thirdNVVC.viewControllers[0] as! ThirdTableViewController
+                thirdVC.updatingTimeInterval = stringTime
                 
 //                NotificationCenter.default.post(name: .newTime, object: nil, userInfo: ["time":stringTime])
             }

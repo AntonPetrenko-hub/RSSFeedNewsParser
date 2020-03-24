@@ -1,17 +1,17 @@
 //
-//  FirstTableViewController.swift
+//  ThirdTableViewController.swift
 //  RSSFeedNewsParser
 //
-//  Created by CloudWorks on 18/03/2020.
+//  Created by CloudWorks on 24/03/2020.
 //  Copyright © 2020 CloudWorks. All rights reserved.
 //
 
 import UIKit
 import SwiftSoup
 
-class FirstTableViewController: UITableViewController {
-    
-    var tabWasVisitedFirst = false
+class ThirdTableViewController: UITableViewController {
+
+var tabWasVisitedFirst = false
     var posts: [Post] = []
     var updatingTimeInterval: Double?
     var tmpPost: Post?
@@ -57,14 +57,19 @@ class FirstTableViewController: UITableViewController {
         timer.invalidate()
     }
     
+    @IBAction func updateDataDidTap(_ sender: Any) {
+        updatePageContenAndTableUI()
+    }
+    
+    
     @objc func updatePageContenAndTableUI() {
         
         // Change tab bar name
-        self.tabBarController?.tabBar.items?[0].title = UserDefaults.standard.string(forKey: "FirstPageName")
+        self.tabBarController?.tabBar.items?[2].title = UserDefaults.standard.string(forKey: "ThirdPageName")
         
         // Parse new data and update tableView
         DispatchQueue.global(qos: .background).async {
-                 if let pageUrl = UserDefaults.standard.url(forKey: "FirstPageURL") {
+                 if let pageUrl = UserDefaults.standard.url(forKey: "ThirdPageURL") {
                      self.posts = []
                      self.parser = XMLParser(contentsOf: pageUrl)!
                      self.parser.delegate = self
@@ -135,34 +140,11 @@ class FirstTableViewController: UITableViewController {
         }
         return CGFloat(86.0)
     }
-    
-    // MARK: - Set timer
-    
-    @objc func setTime(notification: Notification) {
-        print("I've got time!")
-        if let newTimeIntervalFromDictionary = notification.userInfo {
-            let newOptionalTimeInterval = newTimeIntervalFromDictionary["time"]
-            if let timeDouble = newOptionalTimeInterval {
-                updatingTimeInterval = timeDouble as? Double
-            }
-        }
-    }
-    
-    @IBAction func updateButtonClick(_ sender: UIBarButtonItem) {
-        
-        updatePageContenAndTableUI()
-    }
-    
+
 }
 
-extension Notification.Name {
-    static let newTime = Notification.Name("newTime")
-}
-
-extension FirstTableViewController: XMLParserDelegate {
-    
+extension ThirdTableViewController: XMLParserDelegate {
     // MARK: - XMLParse delegate
-    
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("Parse error: \(parseError)")
         self.tableView.reloadData()
@@ -188,33 +170,11 @@ extension FirstTableViewController: XMLParserDelegate {
         if let post = tmpPost, let str = string {
             if tmpElement == "title" {
                 tmpPost?.title = post.title+str
-            }  else if tmpElement == "description" {
+            } else if tmpElement == "description" {
                 tmpPost?.description = post.description+str
-            } else if tmpElement == "content:encoded" {
-                tmpPost?.content = post.content+str
-
-                
-                do {
-
-                    let doc: Document = try SwiftSoup.parse(tmpPost?.content ?? "")
-                    let img: Element = try (doc.select("img").first()!)
-                    let imgSrc: String = try img.attr("src");
-                    tmpPost?.imageAddress = imgSrc
-                    
-                } catch Exception.Error(let type, let message) {
-                    print(message)
-                } catch {
-                    print("error")
-                }
+            } else if tmpElement == "thumbnail" {
+                tmpPost?.imageAddress = post.imageAddress+str
             }
         }
-    }
-}
-// MARK: - heightOfString
-extension String {
-    func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
-        return boundingBox.height
     }
 }

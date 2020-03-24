@@ -275,10 +275,10 @@
             </objects>
             <point key="canvasLocation" x="4401.449275362319" y="-637.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Third Table View Controller-->
         <scene sceneID="jJd-Hj-mUs">
             <objects>
-                <tableViewController id="GBb-76-Luj" sceneMemberID="viewController">
+                <tableViewController id="GBb-76-Luj" customClass="ThirdTableViewController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IrB-dO-0ap">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,7 +298,13 @@
                             <outlet property="delegate" destination="GBb-76-Luj" id="MIv-Mp-mDW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="TDY-k1-pSt"/>
+                    <navigationItem key="navigationItem" id="TDY-k1-pSt">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="vbO-gM-2Go">
+                            <connections>
+                                <action selector="updateDataDidTap:" destination="GBb-76-Luj" id="TAd-pH-vtN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsA-wN-VoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

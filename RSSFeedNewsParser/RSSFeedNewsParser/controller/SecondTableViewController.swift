@@ -176,7 +176,7 @@ class SecondTableViewController: UITableViewController {
         func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
             tmpElement = elementName
             if elementName == "item" {
-                tmpPost = Post(title: "", description: "", link: "", content: "", imageAddress: "", opened: false)
+                tmpPost = Post(title: "", description: "", imageAddress: "", content: "", opened: false)
             }
             if elementName == "media:content" {
                 tmpPost?.imageAddress = attributeDict["url"] ?? ""
@@ -196,8 +196,6 @@ class SecondTableViewController: UITableViewController {
             if let post = tmpPost, let str = string {
                 if tmpElement == "title" {
                     tmpPost?.title = post.title+str
-                } else if tmpElement == "link" {
-                    tmpPost?.link = post.link+str
                 } else if tmpElement == "description" {
                     tmpPost?.description = post.description+str
                 }

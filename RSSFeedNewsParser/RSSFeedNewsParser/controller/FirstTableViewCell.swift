@@ -11,10 +11,10 @@ import SDWebImage
 
 class FirstTableViewCell: UITableViewCell {
 
-    var newsTitle: String?
-    var newsDescription: String?
-    var newsLink: String?
-    var newsContent: String?
+//    var newsTitle: String?
+//    var newsDescription: String?
+//    var newsLink: String?
+//    var newsContent: String?
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -25,8 +25,8 @@ class FirstTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        nameLabel.text = newsTitle
-        descriptionLabel.text = newsDescription
+//        nameLabel.text = newsTitle
+//        descriptionLabel.text = newsDescription
     }
     
     func commonInit(_ title: String, _ desc: String, _ img: String){

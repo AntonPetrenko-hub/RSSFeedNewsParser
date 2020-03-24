@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E085D042424ED8700E09730 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E085D032424ED8700E09730 /* PostModel.swift */; };
+		0E285279242A3270003660CA /* ThirdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E285278242A3270003660CA /* ThirdTableViewController.swift */; };
 		0E45A24524235E8900373EAA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45A24424235E8900373EAA /* SettingsViewController.swift */; };
 		0E45A2472423855500373EAA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45A2462423855500373EAA /* MainTabBarController.swift */; };
 		0E47DE862428BA5800237151 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E47DE852428BA5800237151 /* GoogleService-Info.plist */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		0E085D032424ED8700E09730 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		0E285278242A3270003660CA /* ThirdTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTableViewController.swift; sourceTree = "<group>"; };
 		0E45A24424235E8900373EAA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0E45A2462423855500373EAA /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		0E47DE852428BA5800237151 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				0E45A2462423855500373EAA /* MainTabBarController.swift */,
 				0E511A2F242281DD007A5E69 /* FirstTableViewCell.swift */,
 				0E511A2D242270CC007A5E69 /* FirstTableViewController.swift */,
+				0E285278242A3270003660CA /* ThirdTableViewController.swift */,
 				0EE47DEA242A07CB00858F13 /* SecondTableViewController.swift */,
 			);
 			path = controller;
@@ -462,6 +465,7 @@
 			files = (
 				0E511A31242281DD007A5E69 /* FirstTableViewCell.swift in Sources */,
 				0E085D042424ED8700E09730 /* PostModel.swift in Sources */,
+				0E285279242A3270003660CA /* ThirdTableViewController.swift in Sources */,
 				0E5119FE242258D4007A5E69 /* ViewController.swift in Sources */,
 				0E45A2472423855500373EAA /* MainTabBarController.swift in Sources */,
 				0E45A24524235E8900373EAA /* SettingsViewController.swift in Sources */,

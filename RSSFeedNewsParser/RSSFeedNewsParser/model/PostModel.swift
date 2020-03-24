@@ -10,19 +10,17 @@ import Foundation
 
 struct Post: Codable {
     
-    init(title: String, description: String, link: String, content:String, imageAddress: String, opened: Bool) {
+    init(title: String, description: String, imageAddress: String, content: String, opened: Bool) {
         self.title = title
         self.description = description
-        self.link = link
-        self.content = content
         self.imageAddress = imageAddress
+        self.content = content
         self.opened = opened
     }
     
     var title: String
     var description: String
-    var link: String
-    var content: String
     var imageAddress: String
+    var content: String
     var opened: Bool = false
 }
