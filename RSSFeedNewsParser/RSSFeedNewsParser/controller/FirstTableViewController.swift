@@ -22,9 +22,6 @@ class FirstTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // MARK: Notification Center Adding
-        NotificationCenter.default.addObserver(self, selector: #selector(setTime(notification:)), name: .newTime, object: nil)
               
         //Config TableView Cell
         let nibName = UINib(nibName: "FirstTableViewCell", bundle: .main)
@@ -37,16 +34,19 @@ class FirstTableViewController: UITableViewController {
         if tabWasVisitedFirst == false {
                   self.tabWasVisitedFirst = true
               } else if tabWasVisitedFirst == true {
-                      if posts.count <= 0 {
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
+                      if posts.count > 0 {
+                                   DispatchQueue.main.async {
+                                       self.tableView.reloadData()
+                                   }
+                                 } else {
+                                  updatePageContenAndTableUI()
                       }
               }
         
         // MARK: Calling timer
         if let interval = updatingTimeInterval {
             if interval >= 0 {
+                print("Timer started!")
                 timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePageContenAndTableUI), userInfo: nil, repeats: true)
             }
         }
@@ -139,6 +139,7 @@ class FirstTableViewController: UITableViewController {
     // MARK: - Set timer
     
     @objc func setTime(notification: Notification) {
+        print("I've got time!")
         if let newTimeIntervalFromDictionary = notification.userInfo {
             let newOptionalTimeInterval = newTimeIntervalFromDictionary["time"]
             if let timeDouble = newOptionalTimeInterval {

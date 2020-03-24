@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSoup
 
 class SecondTableViewController: UITableViewController {
     
@@ -18,13 +19,10 @@ class SecondTableViewController: UITableViewController {
      
      var timer = Timer()
      var parser = XMLParser()
-     
+    
      override func viewDidLoad() {
          super.viewDidLoad()
          
-         // MARK: Notification Center Adding
-         NotificationCenter.default.addObserver(self, selector: #selector(setTime(notification:)), name: .newTime, object: nil)
-               
          //Config TableView Cell
          let nibName = UINib(nibName: "FirstTableViewCell", bundle: .main)
          tableView.register(nibName, forCellReuseIdentifier: "Cell")
@@ -32,20 +30,23 @@ class SecondTableViewController: UITableViewController {
      
      override func viewWillAppear(_ animated: Bool) {
          super.viewWillAppear(animated)
-         
+                 
          if tabWasVisitedFirst == false {
                    self.tabWasVisitedFirst = true
                } else if tabWasVisitedFirst == true {
-                       if posts.count <= 0 {
+                       if posts.count > 0 {
                          DispatchQueue.main.async {
                              self.tableView.reloadData()
                          }
-                       }
+                       } else {
+                        updatePageContenAndTableUI()
+            }
                }
          
          // MARK: Calling timer
          if let interval = updatingTimeInterval {
              if interval >= 0 {
+                print("Timer started!")
                  timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePageContenAndTableUI), userInfo: nil, repeats: true)
              }
          }
@@ -56,14 +57,19 @@ class SecondTableViewController: UITableViewController {
          timer.invalidate()
      }
      
+    
+    @IBAction func updateContentButtonPress(_ sender: Any) {
+        updatePageContenAndTableUI()
+    }
+    
      @objc func updatePageContenAndTableUI() {
          
          // Change tab bar name
-         self.tabBarController?.tabBar.items?[0].title = UserDefaults.standard.string(forKey: "FirstPageName")
+         self.tabBarController?.tabBar.items?[1].title = UserDefaults.standard.string(forKey: "SecondPageName")
          
          // Parse new data and update tableView
          DispatchQueue.global(qos: .background).async {
-                  if let pageUrl = UserDefaults.standard.url(forKey: "FirstPageURL") {
+                  if let pageUrl = UserDefaults.standard.url(forKey: "SecondPageURL") {
                       self.posts = []
                       self.parser = XMLParser(contentsOf: pageUrl)!
                       self.parser.delegate = self
@@ -138,6 +144,7 @@ class SecondTableViewController: UITableViewController {
         // MARK: - Set timer
         
         @objc func setTime(notification: Notification) {
+            print("Got it")
             if let newTimeIntervalFromDictionary = notification.userInfo {
                 let newOptionalTimeInterval = newTimeIntervalFromDictionary["time"]
                 if let timeDouble = newOptionalTimeInterval {
@@ -153,11 +160,11 @@ class SecondTableViewController: UITableViewController {
 }
         
 
-    extension Notification.Name {
-        static let newTime = Notification.Name("newTime")
-    }
+//    extension Notification.Name {
+//        static let newTime = Notification.Name("newTime")
+//    }
 
-    extension FirstTableViewController: XMLParserDelegate {
+    extension SecondTableViewController: XMLParserDelegate {
         
         // MARK: - XMLParse delegate
         
@@ -171,12 +178,15 @@ class SecondTableViewController: UITableViewController {
             if elementName == "item" {
                 tmpPost = Post(title: "", description: "", link: "", content: "", imageAddress: "", opened: false)
             }
+            if elementName == "media:content" {
+                tmpPost?.imageAddress = attributeDict["url"] ?? ""
+            }
         }
         
         func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
             if elementName == "item" {
                        if let post = tmpPost {
-                           posts.append(post)
+                        self.posts.append(post)
                        }
                        tmpPost = nil
                    }
@@ -190,22 +200,6 @@ class SecondTableViewController: UITableViewController {
                     tmpPost?.link = post.link+str
                 } else if tmpElement == "description" {
                     tmpPost?.description = post.description+str
-                } else if tmpElement == "content:encoded" {
-                    tmpPost?.content = post.content+str
-                    
-                    do {
-
-                        let doc: Document = try SwiftSoup.parse(tmpPost?.content ?? "")
-                        let img: Element = try (doc.select("img").first()!)
-                        
-                        let imgSrc: String = try img.attr("src");
-                        tmpPost?.imageAddress = imgSrc
-                        
-                    } catch Exception.Error(let type, let message) {
-                        print(message)
-                    } catch {
-                        print("error")
-                    }
                 }
             }
         }

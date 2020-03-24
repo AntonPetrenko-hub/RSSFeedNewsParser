@@ -67,7 +67,16 @@ class SettingsViewController: UIViewController {
         
         if timerLabel.text != "" {
             if let stringTime = Double(timerLabel.text!){
-                NotificationCenter.default.post(name: .newTime, object: nil, userInfo: ["time":stringTime])
+                
+                let firstNVVC = self.tabBarController?.viewControllers![0] as! UINavigationController
+                let firstVC = firstNVVC.viewControllers[0] as! FirstTableViewController
+                firstVC.updatingTimeInterval = stringTime
+                
+                let secondNVVC = self.tabBarController?.viewControllers![1] as! UINavigationController
+                let secondVC = secondNVVC.viewControllers[0] as! SecondTableViewController
+                secondVC.updatingTimeInterval = stringTime
+                
+//                NotificationCenter.default.post(name: .newTime, object: nil, userInfo: ["time":stringTime])
             }
             
 
