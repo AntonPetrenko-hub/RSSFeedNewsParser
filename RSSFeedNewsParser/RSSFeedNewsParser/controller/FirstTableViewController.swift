@@ -103,8 +103,8 @@ class FirstTableViewController: UITableViewController {
         if posts[indexPath.row].opened == true {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! FirstTableViewCell
             cell.commonInit(posts[indexPath.row].title, posts[indexPath.row].description, posts[indexPath.row].imageAddress)
-            cell.nameLabel.numberOfLines = 0
-            cell.descriptionLabel.numberOfLines = 0
+            cell.nameLabel.numberOfLines = 2
+            cell.descriptionLabel.numberOfLines = 2
             
             return cell
         }
