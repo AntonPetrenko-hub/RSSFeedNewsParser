@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FirstTableViewCell: UITableViewCell {
 
@@ -40,8 +41,9 @@ class FirstTableViewCell: UITableViewCell {
         descriptionLabel.text = desc
         
         let url = URL(string: img)
-        let data = try? Data(contentsOf: url!)
-        newsImage.image = UIImage(data: data!)
+//        let data = try? Data(contentsOf: url!)
+        newsImage.sd_setImage(with: url, placeholderImage: UIImage(named: "loading"), completed: nil)
+//        newsImage.image = UIImage(data: data!)
         
     }
     

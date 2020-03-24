@@ -6,6 +6,7 @@ target 'RSSFeedNewsParser' do
   use_frameworks!
 
 pod 'SwiftSoup'
+pod 'SDWebImage', '~> 5.0'
 
   target 'RSSFeedNewsParserTests' do
     inherit! :search_paths
