@@ -46,7 +46,6 @@ var tabWasVisitedFirst = false
         // MARK: Calling timer
         if let interval = updatingTimeInterval {
             if interval >= 0 {
-                print("Timer started!")
                 timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updatePageContenAndTableUI), userInfo: nil, repeats: true)
             }
         }
