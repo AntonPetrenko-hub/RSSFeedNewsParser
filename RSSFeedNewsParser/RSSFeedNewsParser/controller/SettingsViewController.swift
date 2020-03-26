@@ -34,9 +34,18 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        firstUrlLabel.text = UserDefaults.standard.url(forKey: "FirstPageURL")?.absoluteString
+        firstPageTitleLabel.text = UserDefaults.standard.string(forKey: "FirstPageName")
+        secondUrlLabel.text = UserDefaults.standard.url(forKey: "SecondPageURL")?.absoluteString
+        secondPageTitleLabel.text = UserDefaults.standard.string(forKey: "SecondPageName")
+        thirdUrlLabel.text = UserDefaults.standard.url(forKey: "ThirdPageURL")?.absoluteString
+        thirdPageTitleLabel.text = UserDefaults.standard.string(forKey: "ThirdPageName")
+    }
    
     
     @IBAction func saveButtonPress(_ sender: UIButton) {
@@ -50,7 +59,7 @@ class SettingsViewController: UIViewController {
             
         } else {
             // Saving names and URLs to user defaults
-            UserDefaults.standard.set(URL(string: firstUrlLabel.text ?? ""), forKey: "FirstPageURL")
+            UserDefaults.standard.set(URL(string: firstUrlLabel.text!), forKey: "FirstPageURL")
             UserDefaults.standard.set( firstPageTitleLabel.text ?? "", forKey: "FirstPageName")
             UserDefaults.standard.set(URL(string: secondUrlLabel.text ?? ""), forKey: "SecondPageURL")
             UserDefaults.standard.set( secondPageTitleLabel.text ?? "", forKey: "SecondPageName")
@@ -73,11 +82,11 @@ class SettingsViewController: UIViewController {
                 firstVC.updatingTimeInterval = stringTime
                 
                 let secondNVVC = self.tabBarController?.viewControllers![1] as! UINavigationController
-                let secondVC = secondNVVC.viewControllers[0] as! SecondTableViewController
+                let secondVC = secondNVVC.viewControllers[0] as! NewSecondTableViewController
                 secondVC.updatingTimeInterval = stringTime
                 
                 let thirdNVVC = self.tabBarController?.viewControllers![2] as! UINavigationController
-                let thirdVC = thirdNVVC.viewControllers[0] as! ThirdTableViewController
+                let thirdVC = thirdNVVC.viewControllers[0] as! NewThirdViewController
                 thirdVC.updatingTimeInterval = stringTime
                 
 //                NotificationCenter.default.post(name: .newTime, object: nil, userInfo: ["time":stringTime])

@@ -12,9 +12,13 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBar.items?[0].title = UserDefaults.standard.string(forKey: "FirstPageName")
+        self.tabBar.items?[1].title = UserDefaults.standard.string(forKey: "SecondPageName")
+        self.tabBar.items?[2].title = UserDefaults.standard.string(forKey: "ThirdPageName")
 
         // Do any additional setup after loading the view.
     }
+    
     
     
 

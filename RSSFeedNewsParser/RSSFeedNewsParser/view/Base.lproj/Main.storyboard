@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7cZ-Mg-jEf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7cZ-Mg-jEf">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -192,7 +192,7 @@
                     <navigationItem key="navigationItem" id="cE4-Mi-8gp">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="bz9-24-CSy">
                             <connections>
-                                <action selector="updateButtonClick:" destination="1Pe-ak-jBP" id="a1v-BH-sfo"/>
+                                <action selector="updateButtonDidTap:" destination="1Pe-ak-jBP" id="r0L-Zt-Ucz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -240,10 +240,10 @@
             </objects>
             <point key="canvasLocation" x="1549.2753623188407" y="-954.24107142857133"/>
         </scene>
-        <!--Second Table View Controller-->
+        <!--New Second Table View Controller-->
         <scene sceneID="PQ9-0o-BdV">
             <objects>
-                <tableViewController id="DlX-wZ-Ary" customClass="SecondTableViewController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="DlX-wZ-Ary" customClass="NewSecondTableViewController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="hVl-Bu-HfT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,7 +266,7 @@
                     <navigationItem key="navigationItem" id="UmM-Xd-buR">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="Frh-KT-gkS">
                             <connections>
-                                <action selector="updateContentButtonPress:" destination="DlX-wZ-Ary" id="MPG-YG-nhh"/>
+                                <action selector="updatingButtonWasTapped:" destination="DlX-wZ-Ary" id="dpJ-Ku-1yH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -275,10 +275,10 @@
             </objects>
             <point key="canvasLocation" x="4401.449275362319" y="-637.5"/>
         </scene>
-        <!--Third Table View Controller-->
+        <!--New Third View Controller-->
         <scene sceneID="jJd-Hj-mUs">
             <objects>
-                <tableViewController id="GBb-76-Luj" customClass="ThirdTableViewController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="GBb-76-Luj" customClass="NewThirdViewController" customModule="RSSFeedNewsParser" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IrB-dO-0ap">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -301,7 +301,7 @@
                     <navigationItem key="navigationItem" id="TDY-k1-pSt">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="vbO-gM-2Go">
                             <connections>
-                                <action selector="updateDataDidTap:" destination="GBb-76-Luj" id="TAd-pH-vtN"/>
+                                <action selector="updateButtonWasTapped:" destination="GBb-76-Luj" id="nan-cH-EyE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -350,8 +350,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.clockwise" catalog="system" width="56" height="64"/>
-        <image name="book" catalog="system" width="64" height="50"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="book" catalog="system" width="128" height="101"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>
