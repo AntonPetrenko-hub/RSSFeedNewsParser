@@ -58,6 +58,7 @@ class NewSecondTableViewController: NewsFeedController {
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        self.tableView.refreshControl?.endRefreshing()
                     }
                 }
     }

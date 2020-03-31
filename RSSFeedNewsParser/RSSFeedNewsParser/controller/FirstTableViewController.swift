@@ -13,6 +13,7 @@ class FirstTableViewController: NewsFeedController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +60,8 @@ class FirstTableViewController: NewsFeedController {
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        self.tableView.refreshControl?.endRefreshing()
+                        
                     }
                 }
     }
@@ -141,6 +144,8 @@ class NewsFeedController: UITableViewController {
          //Config TableView Cell
          let nibName = UINib(nibName: "FirstTableViewCell", bundle: .main)
          tableView.register(nibName, forCellReuseIdentifier: "Cell")
+        tableView.refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(updatePageContenAndTableUI), for: .valueChanged)
     }
     
     @objc func updatePageContenAndTableUI() {
